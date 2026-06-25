@@ -18,12 +18,7 @@ A PHP & MySQL based portal for students and teachers to manage assignments onlin
 ### 🚀 Live Demo
 **Link:** https://vaishnavi-portal.great-site.net
 
-### 🔑 Demo Login Credentials
-| Role | Email | Password |
-| --- | --- | --- |
-| Admin | admin@oasp.com | admin123 |
-| Teacher | teacher@oasp.com | teacher123 |
-| Student | student@oasp.com | student123 |
+**Note:** Contact for demo access
 
 ### 📸 Project Screenshots
 1. Login Page with Dark Mode
