@@ -1,15 +1,17 @@
 <?php
+session_start();
 include 'db.php';
 
 if(isset($_POST['login'])){
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
     
-    $sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = mysqli_query($conn, $sql);
     
     if(mysqli_num_rows($result) == 1){
         $user = mysqli_fetch_assoc($result);
+        if(password_verify($password, $user['password'])){
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['role'] = $user['role'];
@@ -17,8 +19,11 @@ if(isset($_POST['login'])){
         exit();
     } else {
         $error = "Invalid email or password!";
+        }
+    } else {
+        $error = "Invalid email or password!";
     }
-}
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -78,7 +83,6 @@ if(isset($_POST['login'])){
                         </div>
                         <button type="submit" name="login" class="btn btn-primary w-100">Login <i class="fas fa-sign-in-alt"></i></button>
                     </form>
-                    <p class="text-center mt-3 text-muted small">Default Admin: admin@portal.com / admin123</p>
                 </div>
             </div>
         </div>

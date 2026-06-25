@@ -9,6 +9,7 @@ if(isset($_POST['register'])){
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
+    $hash = password_hash($password, PASSWORD_DEFAULT);
     $role = $_POST['role'];
     
     // Check if email already exists
@@ -17,7 +18,7 @@ if(isset($_POST['register'])){
         $error = "Email already exists. Please use a different email.";
     } else {
         $stmt = $conn->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $name, $email, $password, $role);
+        $stmt->bind_param("ssss", $name, $email, $hash, $role);
         if($stmt->execute()){
             $success = "User registered successfully";
         } else {

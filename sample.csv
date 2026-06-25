@@ -1,0 +1,3 @@
+name,email,password,role
+John Doe,john@portal.com,123456,student
+Jane Smith,jane@portal.com,123456,teacher
